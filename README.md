@@ -12,5 +12,8 @@ let g:go_on_save_hooks = 1
 ```lua
 use { 'amirrezaask/go.nvim' }
 ```
+## Commands
+- GoRun
+- GoTestAll
 
 
