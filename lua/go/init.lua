@@ -10,10 +10,18 @@ local function go_run(file)
     end
 end
 
+local function go_test(path)
+    return function()
+        nvim.nvim_command(string.format('!go test %s', path))
+    end
+end
+
 go['go_fmt'] = function (pkg)
     nvim.nvim_command(string.format('silent ! %s %s', go_fmt_command, pkg))
     nvim.nvim_command('e')
 end
+
+go['go_test_all'] = go_test('./...')
 
 go['go_run'] =  go_run("*.go")
 
