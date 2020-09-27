@@ -8,11 +8,15 @@ go['go_fmt'] = function (pkg)
     nvim.nvim_command('e')
 end
 
+go['go_import'] = function(file)
+    nvim.nvim_command(string.format('! goimport -w %s', file))
+end
 go['go_get'] = function (pkg)
     nvim.nvim_command(string.format('! %s %s', go_get_command, pkg))
 end
 
-go['go_fmt_on_save'] = function ()
+go['go_fmt_import_on_save'] = function ()
+    nvim.nvim_command('autocmd BufWritePost *.go lua require\'go\'.go_import("%")')
     nvim.nvim_command('autocmd BufWritePost *.go lua require\'go\'.go_fmt(".")')
 end
 
