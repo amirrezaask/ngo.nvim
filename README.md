@@ -11,9 +11,14 @@ let g:go_on_save_hooks = 1
 ### Using Packer.nvim
 ```lua
 use { 'amirrezaask/go.nvim' }
+
+require'go'
 ```
 ## Commands
 - GoRun
 - GoTestAll
+- GoImport
+- GoFmt
+- GoInstall
 
 
