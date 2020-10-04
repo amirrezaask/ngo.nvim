@@ -44,18 +44,20 @@ go['go_import_this_file'] = go_import('%')
 go['go_install'] = go_install('.')
 go['enable_go_fmt_import_on_save'] = enable_save_hooks
 
--- Define Ex commands
+-- Define Ex commands [[
 nvim.nvim_command[[command! GoInstall lua require'go'.go_install()]]
 nvim.nvim_command[[command! GoRun lua require'go'.go_run()]]
 nvim.nvim_command[[command! GoTestAll lua require'go'.go_test_all()]]
 nvim.nvim_command[[command! GoImport lua require'go'.go_import()]]
 nvim.nvim_command[[command! GoFmt lua require'go'.go_fmt()]]
+-- ]]
 
-
--- Enable Go save hooks
-if nvim.nvim_get_var('go_on_save_hooks') then go['enable_go_fmt_import_on_save']() end
-
-
-
+-- Go save hooks [[
+local disable_save_hooks = vim.g.go_disable_save_hooks
+if disable_save_hooks == nil
+then
+        go['enable_go_fmt_import_on_save']()
+end
+-- ]]
 return go
 
