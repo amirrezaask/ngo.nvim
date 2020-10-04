@@ -22,3 +22,8 @@ require'go'
 - GoInstall
 
 
+
+#TODO
+- Jump to test file
+- better text object support (maybe with treesitter)
+
