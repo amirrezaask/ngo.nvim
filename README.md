@@ -1,4 +1,4 @@
-# go.nvim
+# ngo.nvim
 Neovim Go IDE plugin
 
 ## Installation
@@ -33,4 +33,4 @@ require'go'
 # TODO
 - Jump to test file
 - better text object support (maybe with treesitter)
-
+- Implement an interface
