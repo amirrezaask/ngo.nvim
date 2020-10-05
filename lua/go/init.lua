@@ -16,7 +16,13 @@ local base = {
     end,
     test = function(path)
         return function()
-            nvim.nvim_command(string.format('!go test %s', path))
+            nvim.nvim_command(string.format('watch -n 5 go test %s', path))
+        end
+    end,
+    watch_test = function(path)
+        return function()
+            vim.cmd(":vnew")
+            vim.fn.termopen(string.format('watch -n 5 go test %s', path))
         end
     end,
     fmt = function(pkg)
@@ -39,6 +45,9 @@ local utils = {
     end,
     test_all = function()
         base.test("./...")()
+    end,
+    test_tdd = function()
+        base.watch_test("./...")()
     end,
     fmt = function()
         base.fmt(".")()
