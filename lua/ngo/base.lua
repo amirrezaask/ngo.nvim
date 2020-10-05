@@ -1,11 +1,10 @@
 local nvim = vim.api
-local go_fmt_command = 'go fmt'
-local go_install_command = 'go install'
 
 local base = {
     run = function(file)
         return function()
-            nvim.nvim_command(string.format('!go run %s', file))
+            vim.cmd(":vnew")
+            vim.fn.termopen(string.format('go run %s', file))
         end
     end,
     import = function(file)
@@ -16,7 +15,7 @@ local base = {
     end,
     test = function(path)
         return function()
-            nvim.nvim_command(string.format('go test %s', path))
+            nvim.nvim_command(string.format('terminal go test %s', path))
         end
     end,
     watch_test = function(path)
@@ -27,13 +26,14 @@ local base = {
     end,
     fmt = function(pkg)
         return function()
-            nvim.nvim_command(string.format('silent ! %s %s', go_fmt_command, pkg))
+            nvim.nvim_command(string.format('silent ! go fmt %s', pkg))
             nvim.nvim_command('e')
         end
     end,
     install = function(pkg)
         return function()
-            nvim.nvim_command(string.format('silent ! %s %s', go_install_command, pkg))
+            vim.cmd(":vnew")
+            vim.fn.termopen(string.format('silent ! go install %s', pkg))
         end
     end
 }

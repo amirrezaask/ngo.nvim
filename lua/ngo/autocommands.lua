@@ -2,7 +2,7 @@ local base = require('ngo.base')
 
 
 local function default_formatter()
-    if vim.api.executable("goimports") then
+    if vim.fn.executable("goimports") then
         return "goimports"
     else 
         return "gofmt"
