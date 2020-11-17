@@ -1,5 +1,5 @@
 -- Setup LSP
-require'nvim_lsp'.gopls.setup{on_attach = require'completion'.on_attach}
+require'lspconfig'.gopls.setup{on_attach = require'completion'.on_attach}
 
 -- Register exec commands
 vim.cmd [[command! GoInstall lua require'ngo.go_tools'.utils.install()]]
